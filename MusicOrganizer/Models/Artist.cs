@@ -23,8 +23,12 @@ namespace MusicOrganizer.Models
 
     public static List<Artist> GetAll()
     {
-
       return _artists;
+    }
+
+    public static Artist Find(int searchId)
+    {
+      return _artists[searchId-1];
     }
 
     public static void ClearAll()
