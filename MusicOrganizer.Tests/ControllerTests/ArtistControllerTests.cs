@@ -7,9 +7,33 @@ using MusicOrganizer.Models;
 namespace MusicOrganizer.Tests
 {
   [TestClass]
-  // RENAME THIS CLASS TO MATCH THE CLASS YOU ARE WORKING WITH
   public class ArtistControllerTest
   {
+    [TestMethod]
+    public void Index_ReturnsCorrectView_True()
+    {
+        //Arrange
+      ArtistController controller = new ArtistController();
 
+      //Act
+      ActionResult indexView = controller.Index();
+
+      //Assert
+      Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+    }
+
+    [TestMethod]
+    public void Index_HasCorrectModelType_ArtistsList()
+    {
+        //Arrange
+        // ArtistController controller = new ArtistController();
+        ViewResult indexView = new ArtistController().Index() as ViewResult;
+
+        //Act
+        var result = indexView.ViewData.Model;
+
+        //Assert
+        Assert.IsInstanceOfType(result, typeof(List<Artist>));
+    }
   }
 }
