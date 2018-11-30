@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicOrganizer.Models;
+using System.Collections.Generic;
 
 namespace MusicOrganizer.Controllers
 {
@@ -8,9 +9,16 @@ namespace MusicOrganizer.Controllers
         [HttpGet("/artists")]
         public ActionResult Index()
         {
-          return View();
+          List<Artist> allArtists = Artist.GetAll();
+          ViewResult viewResult = View("Index", allArtists);
+          return viewResult;
         }
 
-
+        [HttpPost("/artists")]
+        public ActionResult Create(string artistName)
+        {
+          //Artist newArtist = new Artist(artistName);
+          return RedirectToAction("Index");
+        }
     }
 }
